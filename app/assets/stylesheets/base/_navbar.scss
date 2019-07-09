@@ -1,0 +1,37 @@
+.navbar {
+  background: $black;
+  min-height: 80px;
+  margin-bottom: 1rem;
+
+
+  .navbar-brand {
+    img {
+      height: 60px;
+    }
+  }
+
+  a {
+    color: $white;
+    display: flex;
+    align-items: center;
+    margin: 0 1em;
+    justify-content: space-evenly;
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover {
+      color: $cyan;
+      text-decoration: none;
+      transition: 0.4s;
+    }
+    &:active {
+      color: $cyan;
+    }
+  }
+
+  i {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+}

@@ -1,0 +1,25 @@
+$footer-color: lighten($dark-grey, 1);
+$footer-text-color: lighten($dark-grey, 60);
+
+.card-footer {
+  background-color: $footer-color !important;
+}
+
+.footer {
+  text-align: center;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.footer-inner {
+  color: $footer-text-color;
+
+  &::before {
+    border-bottom: 0.0625em solid $footer-text-color;
+    content: '';
+    display: inline-block;
+    margin-bottom: 1em;
+    width: 12em;
+  }
+}
