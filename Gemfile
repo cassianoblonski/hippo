@@ -48,4 +48,6 @@ group :test do
   gem 'simplecov', require: false
   gem 'rails-controller-testing'
   gem 'capybara-screenshot'
+  gem 'capybara-selenium'
+  gem 'selenium-webdriver'
 end

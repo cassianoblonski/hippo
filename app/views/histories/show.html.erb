@@ -53,7 +53,7 @@
           <div class="card-text">
             <div class="col-md-12 d-flex">
               <div class="p-2 task-check">
-                <%= check_box_tag 'completed', task.id, task.done?,
+                <%= check_box_tag "task-checkbox-#{task.id}", task.id, task.done?,
                       data: {
                         remote: true,
                         url: project_history_task_toggle_path(@project.id, @history.id, task.id),
@@ -62,7 +62,7 @@
                       } %>
               </div>
               <div class="p-2 task-description">
-                <%= task.description %>
+                <%= link_to task.description, [@project, @history, task] %>
               </div>
             </div>
             <div class="card-text task-time text-muted">

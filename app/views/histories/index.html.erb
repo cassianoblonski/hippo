@@ -14,7 +14,7 @@
     <div class="card-header">
       To Do
     </div>
-    <div class="card-body">
+    <div class="card-body to-do">
       <%= render 'card', histories: @project.histories.to_do %>
     </div>
   </div>
@@ -23,7 +23,7 @@
     <div class="card-header">
       Doing
     </div>
-    <div class="card-body">
+    <div class="card-body doing">
       <%= render 'card', histories: @project.histories.doing %>
     </div>
   </div>
@@ -32,7 +32,7 @@
     <div class="card-header">
       Done
     </div>
-    <div class="card-body">
+    <div class="card-body done">
       <%= render 'card', histories: @project.histories.done %>
     </div>
   </div>

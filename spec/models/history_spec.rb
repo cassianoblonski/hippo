@@ -15,10 +15,7 @@ RSpec.describe History, type: :model do
   end
 
   describe "status" do
-    it { is_expected.to enumerize(:status) }
-    it { is_expected.to enumerize(:status).in(:pending, :started, :delivered, :accepted) }
-    it { is_expected.to enumerize(:status).in(:pending, :started, :delivered, :accepted)
-                                          .with_default(:pending) }
+    it { is_expected.to define_enum_for(:status).with_values %i( pending started delivered accepted ) }
   end
 
   describe '#points_scale' do

@@ -9,6 +9,7 @@
       </div>
     </div>
     <div class="card-body">
+      <%= link_to "Back", projects_path , class: 'btn btn-secondary' %>
       <%= link_to 'Edit Project', edit_project_path(@project),
           class: 'btn btn-primary', role: :button %>
     </div>
