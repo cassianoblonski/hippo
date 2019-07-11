@@ -23,13 +23,10 @@
         <span class="show-action-label">Description: </span><%= @history.description %>
       </div>
       <div class="card-text">
-        <span class="show-action-label">Deadline: </span><%= @history.deadline %>
+        <span class="show-action-label">Deadline: </span><%= l(@history.deadline) %>
       </div>
       <div class="card-text">
-        <span class="show-action-label">Started_at: </span><%= @history.created_at %>
-      </div>
-      <div class="card-text">
-        <span class="show-action-label">Updated_at: </span><%= @history.updated_at %>
+        <span class="show-action-label">Started_at: </span><%= l(@history.created_at) %>
       </div>
     </div>
     <div class="card-body">

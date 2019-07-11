@@ -7,3 +7,6 @@ en:
         success: "%{resource} was successfully updated."
       next_status:
         unfinished_tasks: "History still has unfinished tasks"
+  time:
+    formats:
+      default: '%B %e, %Y - %H:%M'
