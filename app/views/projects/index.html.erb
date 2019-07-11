@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="float-left">Projects</h1>
+      <%= link_to 'Create Project', new_project_path, class: 'btn btn-lg float-right btn-primary' %>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="row">
+    <% @projects.each do |project| %>
+      <div class="col-md-4 project-card">
+        <div class="card text-white bg-dark">
+            <div class="card-header">
+              <%= project.name %>
+              <%= link_to 'Edit', edit_project_path(project),
+                  class: 'btn btn-sm float-right btn-primary' %></div>
+            <div class="card-body">
+              <h5 class="card-title">Managed by:</h5>
+              <p class="card-text">
+                <%= project.manager.name %>
+              </p>
+              <%= link_to 'Show Histories', project_histories_path(project),
+                  class: "btn btn-primary" %>
+            </div>
+          </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   end
 
   resources :projects do
-    resources :histories
+    resources :histories do
+      post 'next_status'
+    end
   end
   resources :tasks
   resources :people, only: :show

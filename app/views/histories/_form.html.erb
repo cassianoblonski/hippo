@@ -1,0 +1,49 @@
+<%= form_for [@project, @history], html: { role: "form-signin" } do |f| %>
+  <%= render "/shared/errors", resource: @history %>
+  <div class="form-group">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :requester_id %><br />
+    <%= f.select(:requester_id, Person.all.map {|p| [ p.name, p.id ] },
+                { include_blank: "Choose..."},
+                { class: 'custom-select' }) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :owner_id %><br />
+    <%= f.select(:owner_id, Person.all.map {|p| [ p.name, p.id ] },
+                { include_blank: "Choose..."},
+                { class: 'custom-select' }) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :status %><br />
+    <%= f.select(:status, History.statuses.map {|key,value| [key.titleize, key]},
+                { include_blank: "Choose..."},
+                { class: 'custom-select' }) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %><br />
+    <%= f.text_area :description, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :deadline %><br />
+    <%= f.date_field :deadline, class:'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :points %><br />
+    <%= f.select(:points, History.points_scale,
+                { include_blank: "Choose..."},
+                { class: 'custom-select' }) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit(class: "btn btn-primary") %>
+  </div>
+<% end %>

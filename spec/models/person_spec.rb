@@ -1,9 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe Person, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'associations' do
+    it { is_expected.to have_many(:managed_projects).class_name('Project') }
+    it { is_expected.to have_many(:requested_histories).class_name('History') }
+    it { is_expected.to have_many(:owned_histories).class_name('History') }
+  end
 
-
-  # or with RSpec 3 expect syntax
-  it { is_expected.to enumerize(:sex) }
+  describe 'validations' do
+    it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_presence_of :email }
+  end
 end

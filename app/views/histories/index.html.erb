@@ -1,0 +1,39 @@
+<div class="row project-histories-header col-md-6">
+  <ul class="list-group list-group-horizontal">
+    <li class="list-group-item bg-dark">
+      <%= @project.name %>
+    </li>
+    <li class="list-group-item bg-dark">
+      <%= link_to "New History", new_project_history_path(@project), class: "btn btn-primary" %>
+    </li>
+  </ul>
+</div>
+
+<div class="card-deck">
+  <div class="card bg-dark">
+    <div class="card-header">
+      To Do
+    </div>
+    <div class="card-body">
+      <%= render 'card', histories: @project.histories.to_do %>
+    </div>
+  </div>
+
+  <div class="card bg-dark">
+    <div class="card-header">
+      Doing
+    </div>
+    <div class="card-body">
+      <%= render 'card', histories: @project.histories.doing %>
+    </div>
+  </div>
+
+  <div class="card bg-dark">
+    <div class="card-header">
+      Done
+    </div>
+    <div class="card-body">
+      <%= render 'card', histories: @project.histories.done %>
+    </div>
+  </div>
+</div>

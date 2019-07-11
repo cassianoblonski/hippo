@@ -1,0 +1,51 @@
+<div class="container-fluid container-history">
+  <div class="card card-show-info">
+    <div class="card-header">
+      <%= @project.name %> - <%= @history.name %>
+    </div>
+    <div class="card-body">
+      <div class="card-text">
+        <span class="show-action-label">Status: </span><%= @history.status %>
+      </div>
+      <div class="card-text">
+        <span class="show-action-label">Requested by: </span><%= @history.requester.name %>
+      </div>
+      <div class="card-text">
+        <span class="show-action-label">Owner: </span><%= @history.owner.try(:name) %>
+      </div>
+      <div class="card-text">
+        <span class="show-action-label">Points: </span><%= @history.points %>
+      </div>
+      <div class="card-text">
+        <span class="show-action-label">Description: </span><%= @history.description %>
+      </div>
+      <div class="card-text">
+        <span class="show-action-label">Deadline: </span><%= @history.deadline %>
+      </div>
+      <div class="card-text">
+        <span class="show-action-label">Started_at: </span><%= @history.created_at %>
+      </div>
+      <div class="card-text">
+        <span class="show-action-label">Finished_at: </span><%= @history.updated_at %>
+      </div>
+    </div>
+    <div class="card-body">
+      <%= link_to 'Edit History', edit_project_history_path(@project, @history),
+          class: 'btn btn-primary', role: :button %>
+    </div>
+
+    <div class="card card-show-info">
+      <div class="card-header">
+        Tasks:
+      </div>
+      <% @history.tasks.each do |task| %>
+        <div class="card-body">
+          <div class="card-text">
+            <span class="show-action-label">Task: </span><%= @task.updated_at %>
+            <%= @task.done? %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

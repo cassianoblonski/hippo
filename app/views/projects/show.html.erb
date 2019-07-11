@@ -1,15 +1,15 @@
-<div class="container-fluid container-person">
+<div class="container-fluid container-project">
   <div class="card card-show-info">
     <div class="card-header">
-      <h2><%= @person.name %></h2>
+      Project: <%= @project.name %>
     </div>
     <div class="card-body">
       <div class="card-text">
-        <span class="show-action-label">Email: </span><%= @person.email %>
+        Managed by: <%= @project.manager.name %>
       </div>
     </div>
     <div class="card-body">
-      <%= link_to 'Edit Person', edit_person_registration_path(@person),
+      <%= link_to 'Edit Project', edit_project_path(@project),
           class: 'btn btn-primary', role: :button %>
     </div>
   </div>

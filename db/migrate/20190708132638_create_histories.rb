@@ -2,7 +2,7 @@ class CreateHistories < ActiveRecord::Migration[5.2]
   def change
     create_table :histories do |t|
       t.string :name, null: false
-      t.string :status, null: false, index: true, default: 'pending'
+      t.integer :status, null: false, index: true
       t.text :description
       t.datetime :deadline
       t.integer :points

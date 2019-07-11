@@ -1,16 +1,13 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-dark navbar-expand-lg">
   <%= link_to image_tag('logo.ico'), root_path, class: 'navbar-brand logo' %>
   <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon bg-dark"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item">
-          <%= link_to 'Project', projects_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Task', tasks_path, class: 'nav-link' %>
+          <%= link_to 'Projects', projects_path, class: 'nav-link' %>
         </li>
     </ul>
       <ul class="nav navbar-nav navbar-right">

@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2019_07_08_133654) do
 
   create_table "histories", force: :cascade do |t|
     t.string "name", null: false
-    t.string "status", default: "pending", null: false
+    t.integer "status", null: false
     t.text "description"
     t.datetime "deadline"
     t.integer "points"

@@ -2,6 +2,8 @@
 @import "bootstrap";
 @import "font-awesome";
 @import "people";
+@import "projects";
+@import "histories";
 
 body {
   color: $white;
@@ -18,4 +20,13 @@ body {
 .main {
   position: relative;
   padding-bottom: 6em;
+}
+
+.card-show-info {
+  border-color: $grey;
+  background-color: transparent;
+}
+
+.card-header {
+  background-color: $grey;
 }

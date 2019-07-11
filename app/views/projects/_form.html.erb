@@ -1,0 +1,12 @@
+<%= form_for @project, html: { role: "form-signin" } do |f| %>
+  <%= render "/shared/errors", resource: @project %>
+
+  <div class="form-group">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, class:'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit(class: 'btn btn-primary') %>
+  </div>
+<% end %>

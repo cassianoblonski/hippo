@@ -1,0 +1,51 @@
+.history-card {
+    padding-bottom: 2rem;
+}
+
+.history-points {
+  padding-right: 0.5rem;
+  color: $cyan;
+}
+
+.btn-history {
+  font-size: 0.8rem;
+  padding: 0.1rem 0.3rem;
+  min-width: 4rem;
+}
+
+.history-badge{
+  color: $dark-grey;
+  background-color: $lighter-grey;
+  font-size: 0.8rem;
+  min-width: 4rem;
+}
+
+.history-title{
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.history-description {
+  font-size: 0.8rem;
+
+  line-height: 1.5em;
+  max-height: 4.5em;
+  // overflow: hidden;
+  // position: relative;
+  // text-align: justify;
+  // margin-right: -1em;
+  // padding-right: 1em;
+
+  // // chrome & opera
+  // overflow: hidden;
+  // display: -webkit-box;
+  // -webkit-line-clamp: 3;
+  // -webkit-box-orient: vertical;
+}
+
+.no-padding{
+  padding-left: 0px;
+  padding-right: 0px;
+}
