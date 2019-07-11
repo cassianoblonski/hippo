@@ -49,11 +49,7 @@ class TasksController < ApplicationController
   def toggle
     @task = Task.find(params[:task_id])
 
-    if @task != nil?
-      @task.toggle!(:done)
-    else
-      set_flash "Error, please try again"
-    end
+    @task.toggle!(:done)
   end
 
   private
