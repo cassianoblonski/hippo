@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 person = Person.create(name: 'Cassiano Blonski Sampaio', email: 'cassianobsampaio@gmail.com')
-project = Project.create(name: 'Hippo', manager: person)
-history = History.create(name: 'Add teams', requester: person,
+project = Project.create(name: 'Hippo', manager_id: person.id)
+history = History.create(name: 'Add teams', requester_id: person.id,
                           description: 'Add teams to Hippo so we can separate
                           users by teams and allow multiple companies using the same website.',
                           points: 3

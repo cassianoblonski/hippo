@@ -8,9 +8,11 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :histories do
-      post 'next_status'
+        post 'next_status'
+      resources :tasks do
+        post 'toggle'
+      end
     end
   end
-  resources :tasks
   resources :people, only: :show
 end

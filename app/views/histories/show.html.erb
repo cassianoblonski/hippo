@@ -1,4 +1,7 @@
 <div class="container-fluid container-history">
+    <div class="card-text history-card">
+      <%= link_to "Back", project_histories_path , class: 'btn btn-secondary' %>
+    </div>
   <div class="card card-show-info">
     <div class="card-header">
       <%= @project.name %> - <%= @history.name %>
@@ -26,7 +29,7 @@
         <span class="show-action-label">Started_at: </span><%= @history.created_at %>
       </div>
       <div class="card-text">
-        <span class="show-action-label">Finished_at: </span><%= @history.updated_at %>
+        <span class="show-action-label">Updated_at: </span><%= @history.updated_at %>
       </div>
     </div>
     <div class="card-body">
@@ -36,13 +39,35 @@
 
     <div class="card card-show-info">
       <div class="card-header">
-        Tasks:
+        <div class="col-md-12 d-flex">
+          <div class="p-2">
+            Tasks:
+          </div>
+          <div class="p-2 ml-auto">
+            <%= link_to "New Task", new_project_history_task_path(@project, @history), class: 'btn btn-primary' %>
+          </div>
+        </div>
       </div>
       <% @history.tasks.each do |task| %>
         <div class="card-body">
           <div class="card-text">
-            <span class="show-action-label">Task: </span><%= @task.updated_at %>
-            <%= @task.done? %>
+            <div class="col-md-12 d-flex">
+              <div class="p-2 task-check">
+                <%= check_box_tag 'completed', task.id, task.done?,
+                      data: {
+                        remote: true,
+                        url: project_history_task_toggle_path(@project.id, @history.id, task.id),
+                        method: :post,
+                        class: "task-check"
+                      } %>
+              </div>
+              <div class="p-2 task-description">
+                <%= task.description %>
+              </div>
+            </div>
+            <div class="card-text task-time text-muted">
+              <%= time_ago_in_words(task.updated_at) %>
+            </div>
           </div>
         </div>
       <% end %>

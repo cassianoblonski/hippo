@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :task do
-    description { "MyString" }
+    history { create(:history) }
+    sequence(:description) { |n| "Task #{n}" }
     done { false }
-    history { nil }
   end
 end

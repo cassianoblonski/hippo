@@ -45,7 +45,12 @@ class HistoriesController < ApplicationController
   def next_status
     @history = History.find(params[:history_id])
 
-    @history.update_attribute(:status, @history.increment_status)
+    if @history.status == 'started' && @history.tasks.unfinished.present?
+      flash[:danger] = "History still has unfinished tasks"
+    else
+      @history.update_attribute(:status, @history.increment_status)
+    end
+
     redirect_to project_histories_path
   end
 
