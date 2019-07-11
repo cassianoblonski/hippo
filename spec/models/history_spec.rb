@@ -10,7 +10,6 @@ RSpec.describe History, type: :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of :name}
-    it { is_expected.to validate_presence_of :status }
     it { is_expected.to validate_presence_of :requester }
   end
 
@@ -21,7 +20,14 @@ RSpec.describe History, type: :model do
   describe '#points_scale' do
     it 'returns array with 1,2,3,5,8,13' do
       expect(History.points_scale).to eq([1, 2, 3, 5, 8, 13])
+    end
+  end
 
+  describe '#increment_status' do
+    let(:history) { create(:history, :started) }
+
+    it 'returns next status' do
+      expect(history.increment_status).to eql(2)
     end
   end
 end

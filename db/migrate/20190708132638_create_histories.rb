@@ -2,7 +2,7 @@ class CreateHistories < ActiveRecord::Migration[5.2]
   def change
     create_table :histories do |t|
       t.string :name, null: false
-      t.integer :status, null: false, index: true
+      t.integer :status, index: true, default: 0
       t.text :description
       t.datetime :deadline
       t.integer :points
@@ -12,7 +12,6 @@ class CreateHistories < ActiveRecord::Migration[5.2]
       t.references :owner, index: true, foreign_key: { to_table: :people }
 
       t.timestamps
-
     end
   end
 end

@@ -6,11 +6,11 @@ class History < ApplicationRecord
   belongs_to :owner, class_name: "Person", optional: true
   has_many :tasks
 
-  validates_presence_of :name, :status, :requester
+  validates_presence_of :name, :requester
 
   scope :to_do,   -> { where(status: 0) }
   scope :doing,   -> { where(status: 1) }
-  scope :done, -> { where(status: 2).or(where(status: 3)) }
+  scope :done,    -> { where(status: 2).or(where(status: 3)) }
 
   def self.points_scale
     [1, 2, 3, 5, 8, 13]
@@ -20,16 +20,7 @@ class History < ApplicationRecord
     History.statuses[status]+1
   end
 
-  def status_button_text
-    case status
-    when 'pending'
-      'start'
-    when 'started'
-      'finish'
-    when 'delivered'
-      'accept'
-    else
-      'accepted'
-    end
+  def done?
+    status.eql?('started') && tasks.unfinished.present?
   end
 end

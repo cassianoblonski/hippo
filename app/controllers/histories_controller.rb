@@ -48,7 +48,7 @@ class HistoriesController < ApplicationController
   def next_status
     @history = History.find(params[:history_id])
 
-    if @history.status == 'started' && @history.tasks.unfinished.present?
+    if @history.done?
       flash[:danger] =  I18n.t(:unfinished_tasks, scope: [:flash, :actions, 'next_status'])
     else
       @history.update_attribute(:status, @history.increment_status)
