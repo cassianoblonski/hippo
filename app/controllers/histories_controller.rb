@@ -19,10 +19,11 @@ class HistoriesController < ApplicationController
     @history.project_id = @project.id
 
     if @history.save
-      flash[:success] = "History was successfully created."
+      flash[:success] =  I18n.t(:success,
+                                scope: [:flash, :actions, 'create'],
+                                resource: "History")
       redirect_to [@project, :histories]
     else
-      flash[:danger] = "Error while creating your history"
       render 'new'
     end
   end
@@ -32,7 +33,9 @@ class HistoriesController < ApplicationController
 
   def update
     if @history.update(history_params)
-      flash[:success] = "#{@history.name} was successfully updated."
+      flash[:success] =  I18n.t(:success,
+                                scope: [:flash, :actions, 'update'],
+                                resource: "History")
       redirect_to [@project, @history]
     else
       render 'edit'
@@ -46,7 +49,7 @@ class HistoriesController < ApplicationController
     @history = History.find(params[:history_id])
 
     if @history.status == 'started' && @history.tasks.unfinished.present?
-      flash[:danger] = "History still has unfinished tasks"
+      flash[:danger] =  I18n.t(:unfinished_tasks, scope: [:flash, :actions, 'next_status'])
     else
       @history.update_attribute(:status, @history.increment_status)
     end

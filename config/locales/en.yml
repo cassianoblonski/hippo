@@ -30,4 +30,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  flash:
+    actions:
+      create:
+        success: "%{resource} was successfully created."
+      update:
+        success: "%{resource} was successfully updated."
+      next_status:
+        unfinished_tasks: "History still has unfinished tasks"

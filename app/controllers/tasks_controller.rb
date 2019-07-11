@@ -20,7 +20,9 @@ class TasksController < ApplicationController
     @task.history_id = @history.id
 
     if @task.save
-      flash[:success] = "Task was successfully created."
+      flash[:success] =  I18n.t(:success,
+                                scope: [:flash, :actions, 'create'],
+                                resource: "Task")
       redirect_to [@project, @history]
     else
       render 'new'
@@ -32,7 +34,9 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      flash[:success] = "#{@task.name} was successfully updated."
+      flash[:success] =  I18n.t(:success,
+                                scope: [:flash, :actions, 'update'],
+                                resource: "Task")
       redirect_to [@project, @history, @task]
     else
       render 'edit'
