@@ -1,11 +1,43 @@
-# Task Board
+# Hippo - Task Boards
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Live Example on Heroku
+  https://hippo-tasks.herokuapp.com/
+
+### Dependencies
+
+```
+Ruby 2.6.3
+Rails 5.2.3
+Postgres >= 9.1
+```
+
+### Installing
+
+```console
+$ cp .env.example .env
+$ cp config/database.sample.yml config/database.yml
+$ bundle install
+$ rails db:migrate
+```
+
+### Running
+```console
+$ rails s
+```
+
+### Testing
+
+```console
+$ rspec
+```
+
+
+
+# Task Board Requirements.
 
 Things you may want to cover:
 
-## Teste: Board de Tarefas
+### Teste: Board de Tarefas
 
 * Desenvolver um sistema em Ruby on Rails com um board para cadastro e
 controle de histórias, inspirado no mecanismo de colunas e cards do “Trello”.
@@ -20,13 +52,13 @@ modais, máscaras de data, etc., a critério do candidato.
 * A sequência dos commits deve demonstrar a evolução do projeto; entregar o
 projeto todo pronto com apenas um commit no final perde muitos pontos.
 
-## Entregas:
+### Entregas:
 
 * link do sistema publicado no Heroku, para navegarmos na versão final.
 
 * link do código no Github.
 
-## Regras para o model History
+### Regras para o model History
 
 * points: deve aceitar apenas 1, 2, 3, 5, 8 e 13
 

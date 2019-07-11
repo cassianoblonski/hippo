@@ -14,8 +14,10 @@
 !/tmp/.keep
 
 # Ignore uploaded files in development
+/config/database.yml
 /storage/*
 !/storage/.keep
+.env
 
 /node_modules
 /yarn-error.log

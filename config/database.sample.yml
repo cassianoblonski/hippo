@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("DB_HOST", "127.0.0.1") %>
+  username: <%= ENV.fetch("DB_USER", "postgres") %>
+  password: <%= ENV.fetch("DB_PASSWORD", "postgres") %>
+
+development:
+  <<: *default
+  database: task-board_development
+
+test:
+  <<: *default
+  database: task-board_test
+
+production:
+  <<: *default
+  database: task-board_production
+  username: task-board
+  password: <%= ENV['TASK-BOARD_DATABASE_PASSWORD'] %>
