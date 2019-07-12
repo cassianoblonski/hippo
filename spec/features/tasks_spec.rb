@@ -32,6 +32,17 @@ describe 'Task', type: :feature do
     end
   end
 
+  describe 'edit' do
+    it 'must have the form working' do
+      visit "/projects/#{project.id}/histories/#{history.id}/tasks/#{task.id}/edit"
+      fill_in 'Description', with: 'Do it ASAP'
+
+      click_button('Update Task')
+
+      expect(page).to have_text('Do it ASAP')
+    end
+  end
+
   describe 'check task done', js: true do
     it 'changes to yes' do
       check("task-checkbox-#{task.id}")

@@ -80,6 +80,19 @@ describe 'History', type: :feature do
     end
   end
 
+  describe 'edit' do
+    it 'must have the form working' do
+      visit "/projects/#{project.id}/histories/#{pending_history.id}/edit"
+      fill_in 'Name', with: 'Project v2'
+      find('#history_points').find(:option, 8).select_option
+
+      click_button('Update History')
+
+      expect(page).to have_text('Project v2') &
+                      have_text('8')
+    end
+  end
+
   describe 'change status' do
     context 'pending history' do
       it 'changes to started' do
@@ -119,6 +132,15 @@ describe 'History', type: :feature do
           expect(page).to have_no_link('accepted')
         end
       end
+    end
+  end
+
+   describe 'reset_status' do
+    it 'changes back to pending' do
+      click_link('Back to pending',
+                  href: "/projects/#{project.id}/histories/#{started_history.id}/reset_status")
+      visit "/projects/#{project.id}/histories/#{started_history.id}"
+      expect(page).to have_text('pending')
     end
   end
 end
