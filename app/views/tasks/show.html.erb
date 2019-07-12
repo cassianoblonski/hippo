@@ -12,8 +12,8 @@
       </div>
     </div>
     <div class="card-body">
-      <%= link_to "Back", [@project, @history] , class: 'btn btn-secondary' %>
-      <%= link_to "Edit Task", [:edit, @project, @history, @task] , class: 'btn btn-primary' %>
+      <%= link_to "Back", [@history.project, @history] , class: 'btn btn-secondary' %>
+      <%= link_to "Edit Task", [:edit, @history.project, @history, @task] , class: 'btn btn-primary' %>
     </div>
   </div>
 </div>

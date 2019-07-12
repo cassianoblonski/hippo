@@ -1,4 +1,4 @@
-<%= form_for [@project, @history, @task], html: { role: "form-signin" } do |f| %>
+<%= form_for [@history.project, @history, @task], html: { role: "form-signin" } do |f| %>
   <%= render "/shared/errors", resource: @task %>
 
   <div class="form-group">
@@ -8,6 +8,6 @@
 
   <div class="actions">
     <%= f.submit(class: 'btn btn-primary') %>
-    <%= link_to "Cancel", [@project, @history] , class: 'btn btn-danger' %>
+    <%= link_to "Cancel", [@history.project, @history] , class: 'btn btn-danger' %>
   </div>
 <% end %>

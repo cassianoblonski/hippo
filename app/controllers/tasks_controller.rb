@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-  before_action :set_project
   before_action :set_history
   before_action :set_task, only: [ :show, :edit, :update, :destroy ]
   before_action :authenticate_person!
@@ -23,7 +22,7 @@ class TasksController < ApplicationController
       flash[:success] =  I18n.t(:success,
                                 scope: [:flash, :actions, 'create'],
                                 resource: "Task")
-      redirect_to [@project, @history]
+      redirect_to [@history.project, @history]
     else
       render 'new'
     end
@@ -37,7 +36,7 @@ class TasksController < ApplicationController
       flash[:success] =  I18n.t(:success,
                                 scope: [:flash, :actions, 'update'],
                                 resource: "Task")
-      redirect_to [@project, @history, @task]
+      redirect_to [@history.project, @history, @task]
     else
       render 'edit'
     end
@@ -63,9 +62,5 @@ class TasksController < ApplicationController
 
     def set_history
       @history = History.find(params[:history_id])
-    end
-
-    def set_project
-      @project = Project.find(params[:project_id])
     end
 end

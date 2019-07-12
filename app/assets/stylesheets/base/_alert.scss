@@ -4,6 +4,13 @@
   border-color: #c3e6cb;
 }
 
+.alert-alert {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
 #error_explanation {
   width: auto;
   border: 2px solid red;
@@ -25,3 +32,4 @@
     list-style: square;
   }
 }
+
