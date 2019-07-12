@@ -1,0 +1,29 @@
+.btn-primary {
+  color: $cyan !important;
+  background-color: transparent !important;
+  border-color: $cyan !important;
+}
+
+.btn-primary:hover {
+  background-color: rgba($cyan, 0.15) !important;
+}
+
+.btn-secondary {
+  color: $white !important;
+  background-color: transparent !important;
+  border-color: $white !important;
+}
+
+.btn-secondary:hover {
+  background-color: rgba($white, 0.15) !important;
+}
+
+.btn-danger {
+  color: $red !important;
+  background-color: transparent !important;
+  border-color: $red !important;
+}
+
+.btn-danger:hover {
+  background-color: rgba($red, 0.15) !important;
+}
