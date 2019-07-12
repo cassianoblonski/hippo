@@ -7,6 +7,7 @@ class History < ApplicationRecord
   has_many :tasks
 
   validates_presence_of :name, :requester
+  validate :deadline_date_after_start_date
 
   scope :to_do,   -> { where(status: 0) }
   scope :doing,   -> { where(status: 1) }
@@ -23,4 +24,14 @@ class History < ApplicationRecord
   def done?
     status.eql?('started') && tasks.unfinished.present?
   end
+
+  private
+
+    def deadline_date_after_start_date
+      return if deadline.blank?
+
+      if deadline < Time.now
+        errors.add(:deadline, "must not be before the start date")
+      end
+    end
 end

@@ -11,6 +11,23 @@ RSpec.describe History, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of :name}
     it { is_expected.to validate_presence_of :requester }
+
+    describe 'deadline date' do
+      context 'with valid deadline date' do
+        let(:history) { build :history, deadline: Time.now + 1.week }
+
+        it 'must be before creation time' do
+          expect(history.valid?).to be true
+        end
+      end
+      context 'with invalid deadline date' do
+        let(:history) { build :history, deadline: 1.month.ago }
+
+        it 'cant be before creation time' do
+          expect(history.valid?).to be false
+        end
+      end
+    end
   end
 
   describe "status" do

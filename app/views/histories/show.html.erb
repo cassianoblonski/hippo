@@ -23,7 +23,8 @@
         <span class="show-action-label">Description: </span><%= @history.description %>
       </div>
       <div class="card-text">
-        <span class="show-action-label">Deadline: </span><%= l(@history.deadline) %>
+        <span class="show-action-label">Deadline: </span>
+        <%= l(@history.deadline) if @history.deadline %>
       </div>
       <div class="card-text">
         <span class="show-action-label">Started_at: </span><%= l(@history.created_at) %>
