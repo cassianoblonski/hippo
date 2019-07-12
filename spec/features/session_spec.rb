@@ -8,16 +8,12 @@ describe 'Session', type: :feature do
   end
 
   describe 'sign up' do
-    before do
-      click_link 'Sign up'
-    end
-
     it 'must have form working' do
+      click_link 'Sign up'
       fill_in 'Name', with: 'Foo Bar'
       fill_in 'Email', with: 'foo_bar@email.com'
       fill_in 'Password', with: 'password'
       fill_in 'Password confirmation', with: 'password'
-
       click_button 'Sign up'
 
       expect(page).to have_text('Welcome! You have signed up successfully.') &
@@ -32,7 +28,6 @@ describe 'Session', type: :feature do
     it 'successfully' do
       fill_in 'Email', with: person.email
       fill_in 'Password', with: 'password'
-
       click_button 'Login'
 
       expect(page).to have_text('Signed in successfully.') &
@@ -42,7 +37,6 @@ describe 'Session', type: :feature do
     it 'with wrong information' do
       fill_in 'Email', with: person.email
       fill_in 'Password', with: 'wrong-password'
-
       click_button 'Login'
 
       expect(page).to have_text('Invalid Email or password.')

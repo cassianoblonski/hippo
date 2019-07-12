@@ -63,17 +63,13 @@ describe 'History', type: :feature do
   end
 
   describe 'create' do
-    before do
-      click_link 'New History'
-    end
-
     it 'must have form working' do
+      click_link 'New History'
       fill_in 'Name', with: 'Project 1'
       find('#history_requester_id').find(:option, person.name).select_option
       find('#history_owner_id').find(:option, person.name).select_option
       fill_in 'Description', with: 'Description Text'
       find('#history_points').find(:option, 3).select_option
-
       click_button 'Create History'
 
       expect(page).to have_text('History was successfully created.') &
@@ -81,20 +77,15 @@ describe 'History', type: :feature do
                       have_css('.to-do', text: 'Project 1') &
                       have_css('.to-do', text: 'start') &
                       have_css('.to-do', text: 'Description Text')
-
     end
-
   end
 
   describe 'change status' do
     context 'pending history' do
-      before do
+      it 'changes to started' do
         within '.to-do' do
           click_link 'start'
         end
-      end
-
-      it 'changes to started' do
         within '.doing' do
           expect(page).to have_link(pending_history.name)
         end
@@ -102,13 +93,10 @@ describe 'History', type: :feature do
     end
 
     context 'started_history' do
-      before do
+      it 'changes to delivered' do
         within '.doing' do
           click_link 'finish'
         end
-      end
-
-      it 'changes to delivered' do
         within '.done' do
           expect(page).to have_link(started_history.name)
         end
@@ -116,14 +104,9 @@ describe 'History', type: :feature do
     end
 
     context 'delivered_history' do
-      before do
-        within '.done' do
-          click_link 'accept'
-        end
-      end
-
       it 'changes to accepted' do
         within '.done' do
+          click_link 'accept'
           expect(page).to have_link(delivered_history.name)
         end
       end
@@ -132,6 +115,7 @@ describe 'History', type: :feature do
     context 'accepted_history' do
       it 'must not find a link' do
         within '.done' do
+          click_link 'accept'
           expect(page).to have_no_link('accepted')
         end
       end

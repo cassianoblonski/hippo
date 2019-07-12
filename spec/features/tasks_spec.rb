@@ -14,13 +14,9 @@ describe 'Task', type: :feature do
 
 
   describe 'new task' do
-    before do
-      click_link 'New Task'
-    end
-
     it 'must have form working' do
+      click_link 'New Task'
       fill_in 'Description', with: 'Change logo'
-
       click_button 'Create Task'
 
       expect(page).to have_text('Task was successfully created.') &
@@ -37,12 +33,10 @@ describe 'Task', type: :feature do
   end
 
   describe 'check task done', js: true do
-    before do
+    it 'changes to yes' do
       check("task-checkbox-#{task.id}")
       click_link task.description
-    end
 
-    it 'changes to yes' do
       expect(page).to have_text('Yes')
     end
   end

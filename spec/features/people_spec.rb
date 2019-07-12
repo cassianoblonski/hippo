@@ -25,15 +25,11 @@ describe 'Person', type: :feature do
   end
 
   describe 'edit' do
-    before do
+    it 'must have the form working' do
       visit "/people/#{person.id}"
       click_link "Edit Person"
-    end
-
-    it 'must have the form working' do
       fill_in 'Name', with: 'Foo Bar'
       fill_in 'Current password', with: 'password'
-
       click_button 'Update'
 
       expect(page).to have_text('Foo Bar') &
