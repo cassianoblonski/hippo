@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_08_133654) do
+ActiveRecord::Schema.define(version: 2019_07_12_174511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(version: 2019_07_08_133654) do
     t.index ["project_id"], name: "index_histories_on_project_id"
     t.index ["requester_id"], name: "index_histories_on_requester_id"
     t.index ["status"], name: "index_histories_on_status"
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.string "past_status", null: false
+    t.string "current_status", null: false
+    t.bigint "person_id", null: false
+    t.bigint "history_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["history_id"], name: "index_logs_on_history_id"
+    t.index ["person_id"], name: "index_logs_on_person_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -65,6 +76,8 @@ ActiveRecord::Schema.define(version: 2019_07_08_133654) do
   add_foreign_key "histories", "people", column: "owner_id"
   add_foreign_key "histories", "people", column: "requester_id"
   add_foreign_key "histories", "projects"
+  add_foreign_key "logs", "histories"
+  add_foreign_key "logs", "people"
   add_foreign_key "projects", "people", column: "manager_id"
   add_foreign_key "tasks", "histories"
 end

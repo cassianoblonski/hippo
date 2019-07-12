@@ -5,6 +5,7 @@ class History < ApplicationRecord
   belongs_to :requester, class_name: "Person"
   belongs_to :owner, class_name: "Person", optional: true
   has_many :tasks
+  has_many :logs
 
   validates_presence_of :name, :requester
   validate :deadline_date_after_start_date

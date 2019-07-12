@@ -143,4 +143,29 @@ describe 'History', type: :feature do
       expect(page).to have_text('pending')
     end
   end
+
+  describe 'history log' do
+    context 'when changing to next status' do
+      it 'creates a log entry' do
+        click_link('start',
+                    href: "/projects/#{project.id}/histories/#{pending_history.id}/next_status")
+        visit "/projects/#{project.id}/histories/#{pending_history.id}"
+
+        expect(page).to have_text('started') &
+                        have_text("#{person.name} changed this history status from pending to started")
+      end
+    end
+
+
+    context 'when changing to next status' do
+      it 'creates a log entry' do
+        click_link('Back to pending',
+                      href: "/projects/#{project.id}/histories/#{started_history.id}/reset_status")
+        visit "/projects/#{project.id}/histories/#{started_history.id}"
+
+        expect(page).to have_text('started') &
+                        have_text("#{person.name} changed this history status from started to pending")
+      end
+    end
+  end
 end

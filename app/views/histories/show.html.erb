@@ -11,10 +11,12 @@
         <span class="show-action-label">Status: </span><%= @history.status %>
       </div>
       <div class="card-text">
-        <span class="show-action-label">Requested by: </span><%= @history.requester.name %>
+        <span class="show-action-label">Requested by: </span>
+          <%= link_to @history.requester.name, person_path(@history.requester) %>
       </div>
       <div class="card-text">
-        <span class="show-action-label">Owner: </span><%= @history.owner.try(:name) %>
+        <span class="show-action-label">Owner: </span>
+          <%= link_to @history.owner.name, person_path(@history.owner) if @history.owner %>
       </div>
       <div class="card-text">
         <span class="show-action-label">Points: </span><%= @history.points %>
@@ -46,26 +48,60 @@
           </div>
         </div>
       </div>
-      <% @history.tasks.each do |task| %>
+
+      <% if @history.tasks.present? %>
+        <% @history.tasks.each do |task| %>
+          <div class="card-body">
+            <div class="card-text">
+              <div class="col-md-12 d-flex">
+                <div class="p-2 task-check">
+                  <%= check_box_tag "task-checkbox-#{task.id}", task.id, task.done?,
+                        data: {
+                          remote: true,
+                          url: project_history_task_toggle_path(@project.id, @history.id, task.id),
+                          method: :post,
+                          class: "task-check"
+                        } %>
+                </div>
+                <div class="p-2 task-description">
+                  <%= link_to task.description, [@project, @history, task] %>
+                </div>
+              </div>
+              <div class="card-text task-time text-muted">
+                <%= time_ago_in_words(task.updated_at) %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
         <div class="card-body">
           <div class="card-text">
-            <div class="col-md-12 d-flex">
-              <div class="p-2 task-check">
-                <%= check_box_tag "task-checkbox-#{task.id}", task.id, task.done?,
-                      data: {
-                        remote: true,
-                        url: project_history_task_toggle_path(@project.id, @history.id, task.id),
-                        method: :post,
-                        class: "task-check"
-                      } %>
-              </div>
-              <div class="p-2 task-description">
-                <%= link_to task.description, [@project, @history, task] %>
-              </div>
+            <p align="center">This history has no taks.</p>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="card-header">
+        <div class="col-md-12 d-flex">
+          Logs:
+        </div>
+      </div>
+      <% if @history.logs.present? %>
+        <% @history.logs.each do |log| %>
+          <div class="card-body">
+            <div class="card-text">
+                <%= link_to log.person.name, person_path(log.person), class: "show-action-label" %>
+                changed this history status from
+                <span class="show-action-label"><%= log.past_status %></span>
+                to <span class="show-action-label"><%= log.current_status %></span>
+                at <span class="show-action-label"><%= l(log.created_at) %></span>
             </div>
-            <div class="card-text task-time text-muted">
-              <%= time_ago_in_words(task.updated_at) %>
-            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="card-body">
+          <div class="card-text">
+            <p align="center">No changes have been made to this history yet</p>
           </div>
         </div>
       <% end %>

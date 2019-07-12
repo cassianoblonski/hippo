@@ -47,6 +47,7 @@ class HistoriesController < ApplicationController
 
   def next_status
     @history = History.find(params[:history_id])
+    @log = register_log(@history.increment_status)
 
     if @history.done?
       flash[:danger] =  I18n.t(:unfinished_tasks, scope: [:flash, :actions, 'next_status'])
@@ -59,6 +60,8 @@ class HistoriesController < ApplicationController
 
   def reset_status
     @history = History.find(params[:history_id])
+    @log = register_log(0)
+
     @history.update_attribute(:status, 'pending')
 
     redirect_to project_histories_path
@@ -76,5 +79,13 @@ class HistoriesController < ApplicationController
 
     def set_history
       @history = History.find(params[:id])
+    end
+
+    def register_log(current_status)
+      @history.logs.new(
+        person: current_person,
+        history: @history,
+        past_status: @history.status,
+        current_status: History.statuses.keys[current_status])
     end
 end
