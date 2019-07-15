@@ -5,21 +5,10 @@
         <div class="col-md-1 p-2 history-points">
           <%= history.points %>
         </div>
-        <div class="col-md-8 p-2 history-title">
+        <div class="col-md-11 p-2 history-title">
           <%= link_to history.name, [@project, history] %>
         </div>
-        <div class="col-md-3 p-2 ml-auto history-status">
-          <% if history.status == 'accepted' %>
-            <span class="badge history-badge">accepted</span>
-          <% else %>
-            <%= link_to history.status_button_text,
-                  project_history_next_status_path(@project, history.id),
-                  method: :post,
-                  class: 'btn btn-primary btn-history',
-                  data: {toggle: 'tooltip'},
-                  title: history.status_button_text %>
-          <% end %>
-        </div>
+
       </div>
     </div>
 
@@ -28,6 +17,27 @@
         <div class="offset-md-1 history-description">
           <%= history.description %>
         </div>
+      </div>
+
+      <div class="card-text">
+        <div class="d-flex no-padding">
+            <div class="p-2 ml-auto history-status">
+              <% if history.status != 'pending' %>
+                <%= link_to 'Back to pending', project_history_reset_status_path(@project, history.id),
+                        class: 'btn btn-primary btn-reset',
+                        method: :put %>
+              <% end %>
+              <% if history.status == 'accepted' %>
+                <span class="badge history-badge">accepted</span>
+              <% else %>
+                <%= link_to status_button_text(history.status),
+                      project_history_next_status_path(@project, history.id),
+                      method: :post,
+                      class: 'btn btn-primary btn-history',
+                      title: status_button_text(history.status) %>
+              <% end %>
+            </div>
+          </div>
       </div>
     </div>
   </div>

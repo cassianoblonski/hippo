@@ -54,6 +54,13 @@ class HistoriesController < ApplicationController
     redirect_to project_histories_path
   end
 
+  def reset_status
+    @history = History.find(params[:history_id])
+    @history.update_attribute(:status, 'pending')
+
+    redirect_to project_histories_path
+  end
+
   private
     def history_params
       params.require(:history).permit(:name, :status, :description, :deadline,

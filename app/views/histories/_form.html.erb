@@ -19,12 +19,7 @@
                 { class: 'custom-select' }) %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :status %><br />
-    <%= f.select(:status, History.statuses.map {|key,value| [key.titleize, key]},
-                { include_blank: "Choose..."},
-                { class: 'custom-select' }) %>
-  </div>
+
 
   <div class="form-group">
     <%= f.label :description %><br />

@@ -71,7 +71,6 @@ describe 'History', type: :feature do
       fill_in 'Name', with: 'Project 1'
       find('#history_requester_id').find(:option, person.name).select_option
       find('#history_owner_id').find(:option, person.name).select_option
-      find('#history_status').find(:option, 'Pending').select_option
       fill_in 'Description', with: 'Description Text'
       find('#history_points').find(:option, 3).select_option
 

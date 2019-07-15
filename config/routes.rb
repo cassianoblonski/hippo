@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :histories do
         post 'next_status'
+        put 'reset_status'
       resources :tasks do
         post 'toggle'
       end

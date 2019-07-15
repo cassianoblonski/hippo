@@ -18,6 +18,9 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'factory_bot_rails'
+gem 'faker'
+gem 'dotenv-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
